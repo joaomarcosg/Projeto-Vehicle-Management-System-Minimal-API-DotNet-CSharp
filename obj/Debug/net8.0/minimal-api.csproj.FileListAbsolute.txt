@@ -23,3 +23,4 @@ C:\Users\BAHIA\Desktop\Exercicios-dev\Minimal-API\minimal-api\obj\Debug\net8.0\r
 C:\Users\BAHIA\Desktop\Exercicios-dev\Minimal-API\minimal-api\obj\Debug\net8.0\minimal-api.pdb
 C:\Users\BAHIA\Desktop\Exercicios-dev\Minimal-API\minimal-api\obj\Debug\net8.0\minimal-api.genruntimeconfig.cache
 C:\Users\BAHIA\Desktop\Exercicios-dev\Minimal-API\minimal-api\obj\Debug\net8.0\ref\minimal-api.dll
+C:\Users\BAHIA\Desktop\Exercicios-dev\Minimal-API\minimal-api\obj\Debug\net8.0\minimal-api.sourcelink.json
