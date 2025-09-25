@@ -14,15 +14,17 @@ public class DataBaseContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var connectionString = _configurationAppSettings.GetConnectionString("mysql")?.ToString();
-        if (!string.IsNullOrEmpty(connectionString))
+        if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseMySql(
-                connectionString,
-                ServerVersion.AutoDetect(connectionString)
-            );
+            var connectionString = _configurationAppSettings.GetConnectionString("mysql")?.ToString();
+            if (!string.IsNullOrEmpty(connectionString))
+            {
+                optionsBuilder.UseMySql(
+                    connectionString,
+                    ServerVersion.AutoDetect(connectionString)
+                );
+            }
         }
-
 
     }
 }
