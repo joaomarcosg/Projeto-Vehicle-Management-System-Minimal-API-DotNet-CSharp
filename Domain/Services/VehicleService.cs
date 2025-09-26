@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using MinimalApi.Domain.Entities;
 using MinimalApi.Domain.Interfaces;
 using MinimalApi.Infrastructure.Db;
@@ -7,9 +8,10 @@ namespace MinimalApi.Domain.Services;
 public class VehicleService : IVehicleService
 {
     private readonly DataBaseContext _context;
-    public Vehicle AddVehicle(Vehicle vehicle)
+    public void AddVehicle(Vehicle vehicle)
     {
-        throw new NotImplementedException();
+        _context.Vehicles.Add(vehicle);
+        _context.SaveChanges();
     }
 
     public void DeleteVehicle(Vehicle vehicle)
@@ -20,12 +22,22 @@ public class VehicleService : IVehicleService
 
     public List<Vehicle> ListVehicles(int page = 1, string? name = null, string? mark = null)
     {
-        throw new NotImplementedException();
+        var query = _context.Vehicles.AsQueryable();
+        if (!string.IsNullOrEmpty(name))
+        {
+            query = query.Where(vehicle => EF.Functions.Like(vehicle.Name.ToLower(), $"%{name}%"));
+        }
+
+        int itemsPerPage = 10;
+
+        query = query.Skip((page - 1) * itemsPerPage).Take(itemsPerPage);
+
+        return query.ToList();
     }
 
-    public Vehicle SeachById(int id)
+    public Vehicle? SeachById(int id)
     {
-        throw new NotImplementedException();
+        return _context.Vehicles.Where(vehicle => vehicle.Id == id).FirstOrDefault();
     }
 
     public void UpdateVehicle(Vehicle vehicle)
