@@ -31,5 +31,7 @@ app.MapPost("/login", ([FromBody] LoginDTO loginDTO, IAdministratorService admin
         return Results.Unauthorized();
 });
 
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.Run();
