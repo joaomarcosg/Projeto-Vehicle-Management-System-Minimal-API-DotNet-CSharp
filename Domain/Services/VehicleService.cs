@@ -28,8 +28,9 @@ public class VehicleService : IVehicleService
         throw new NotImplementedException();
     }
 
-    public Vehicle UpdateVehicle(Vehicle vehicle)
+    public void UpdateVehicle(Vehicle vehicle)
     {
-        throw new NotImplementedException();
+        _context.Vehicles.Update(vehicle);
+        _context.SaveChanges();
     }
 }
