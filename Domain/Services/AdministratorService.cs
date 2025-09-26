@@ -12,9 +12,12 @@ public class AdministratorService : IAdministratorService
     {
         _context = context;
     }
-    public bool Login(LoginDTO loginDTO)
+    public Administrator? Login(LoginDTO loginDTO)
     {
-        var qtd = _context.Administrators.Where(a => a.Email == loginDTO.Email && a.Password == loginDTO.Password).Count();
-        return qtd > 0;
+        var adm = _context.Administrators.Where(
+            a => a.Email == loginDTO.Email && a.Password == loginDTO.Password
+        ).FirstOrDefault();
+        
+        return adm;
     }
 }
