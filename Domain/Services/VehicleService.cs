@@ -8,6 +8,10 @@ namespace MinimalApi.Domain.Services;
 public class VehicleService : IVehicleService
 {
     private readonly DataBaseContext _context;
+    public VehicleService(DataBaseContext context)
+    {
+        _context = context;
+    }
     public void AddVehicle(Vehicle vehicle)
     {
         _context.Vehicles.Add(vehicle);
