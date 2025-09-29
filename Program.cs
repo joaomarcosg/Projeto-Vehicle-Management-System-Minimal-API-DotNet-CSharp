@@ -27,7 +27,7 @@ app.MapGet("/", () => Results.Json(new Home()));
 #endregion
 
 #region Administrators
-app.MapPost("/login", ([FromBody] LoginDTO loginDTO, IAdministratorService administratorService) =>
+app.MapPost("/administrators/login", ([FromBody] LoginDTO loginDTO, IAdministratorService administratorService) =>
 {
     if (administratorService.Login(loginDTO) != null)
         return Results.Ok("Logged in sucessfully");
