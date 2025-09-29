@@ -56,11 +56,22 @@ app.MapPost("/vehicle", ([FromBody] VehicleDTO vehicleDTO, IVehicleService vehic
     return Results.Created($"/vehicle/{vehicle.Id}", vehicle);
 
 }).WithTags("Vehicle");
+
 app.MapGet("/vehicle", ([FromQuery] int? page, IVehicleService vehicleService) =>
 {
     var vehicles = vehicleService.ListVehicles(page);
 
     return Results.Ok(vehicles);
+}).WithTags("Vehicle");
+
+app.MapGet("/vehicle/{id}", ([FromRoute] int id, IVehicleService vehicleService) =>
+{
+    var vehicle = vehicleService.SeachById(id);
+
+    if (vehicle == null) return Results.NotFound();
+
+    return Results.Ok(vehicle);
+
 }).WithTags("Vehicle");
 #endregion
 
