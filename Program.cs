@@ -22,8 +22,11 @@ builder.Services.AddDbContext<DataBaseContext>(options =>
 
 var app = builder.Build();
 
+#region Home
 app.MapGet("/", () => Results.Json(new Home()));
+#endregion
 
+#region Administrators
 app.MapPost("/login", ([FromBody] LoginDTO loginDTO, IAdministratorService administratorService) =>
 {
     if (administratorService.Login(loginDTO) != null)
@@ -31,6 +34,7 @@ app.MapPost("/login", ([FromBody] LoginDTO loginDTO, IAdministratorService admin
     else
         return Results.Unauthorized();
 });
+#endregion
 
 app.UseSwagger();
 app.UseSwaggerUI();
