@@ -43,7 +43,7 @@ public class VehicleService : IVehicleService
         return query.ToList();
     }
 
-    public Vehicle? SeachById(int id)
+    public Vehicle? SearchById(int id)
     {
         return _context.Vehicles.Where(vehicle => vehicle.Id == id).FirstOrDefault();
     }
