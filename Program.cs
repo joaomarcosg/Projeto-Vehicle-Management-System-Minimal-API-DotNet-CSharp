@@ -28,7 +28,7 @@ var app = builder.Build();
 #endregion
 
 #region Home
-app.MapGet("/", () => Results.Json(new Home()));
+app.MapGet("/", () => Results.Json(new Home())).WithTags("Home");
 #endregion
 
 #region Administrators
@@ -38,7 +38,7 @@ app.MapPost("/administrators/login", ([FromBody] LoginDTO loginDTO, IAdministrat
         return Results.Ok("Logged in sucessfully");
     else
         return Results.Unauthorized();
-});
+}).WithTags("Administrator");
 #endregion
 
 #region Vehicles
@@ -55,13 +55,13 @@ app.MapPost("/vehicle", ([FromBody] VehicleDTO vehicleDTO, IVehicleService vehic
 
     return Results.Created($"/vehicle/{vehicle.Id}", vehicle);
 
-});
+}).WithTags("Vehicle");
 app.MapGet("/vehicle", ([FromQuery] int? page, IVehicleService vehicleService) =>
 {
     var vehicles = vehicleService.ListVehicles(page);
 
     return Results.Ok(vehicles);
-});
+}).WithTags("Vehicle");
 #endregion
 
 #region App
