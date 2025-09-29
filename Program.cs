@@ -66,7 +66,7 @@ app.MapGet("/vehicle", ([FromQuery] int? page, IVehicleService vehicleService) =
 
 app.MapGet("/vehicle/{id}", ([FromRoute] int id, IVehicleService vehicleService) =>
 {
-    var vehicle = vehicleService.SeachById(id);
+    var vehicle = vehicleService.SearchById(id);
 
     if (vehicle == null) return Results.NotFound();
 
