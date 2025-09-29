@@ -38,6 +38,13 @@ app.MapPost("/administrators/login", ([FromBody] LoginDTO loginDTO, IAdministrat
 });
 #endregion
 
+#region Vehicles
+app.MapPost("/vehicle", ([FromBody] VehicleDTO vehicleDTO, IAdministratorService administratorService) =>
+{
+    
+});
+#endregion
+
 #region App
 app.UseSwagger();
 app.UseSwaggerUI();
