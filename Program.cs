@@ -59,6 +59,8 @@ app.MapPost("/vehicle", ([FromBody] VehicleDTO vehicleDTO, IVehicleService vehic
 app.MapGet("/vehicle", ([FromQuery] int? page, IVehicleService vehicleService) =>
 {
     var vehicles = vehicleService.ListVehicles(page);
+
+    return Results.Ok(vehicles);
 });
 #endregion
 
