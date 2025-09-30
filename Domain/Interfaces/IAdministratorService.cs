@@ -6,6 +6,6 @@ namespace MinimalApi.Domain.Interfaces;
 public interface IAdministratorService
 {
     Administrator? Login(LoginDTO loginDTO);
-    Administrator Add(AdministratorDTO administratorDTO);
+    Administrator Add(Administrator administrator);
     List<Administrator> ListAdministrators(int? page);
 }
