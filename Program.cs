@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MinimalApi.Domain.Entities;
+using MinimalApi.Domain.Enums;
 using MinimalApi.Domain.Interfaces;
 using MinimalApi.Domain.ModelViews;
 using MinimalApi.Domain.Services;
@@ -38,6 +39,37 @@ app.MapPost("/administrators/login", ([FromBody] LoginDTO loginDTO, IAdministrat
         return Results.Ok("Logged in sucessfully");
     else
         return Results.Unauthorized();
+}).WithTags("Administrator");
+
+app.MapPost("/administrators", ([FromBody] AdministratorDTO administratorDTO, IAdministratorService administratorService) =>
+{
+    var validation = new ValidationErrors
+    {
+        Messages = new List<string>()
+    };
+
+    if (string.IsNullOrEmpty(administratorDTO.Email))
+        validation.Messages.Add("Email cannot be empty");
+
+    if (string.IsNullOrEmpty(administratorDTO.Password))
+        validation.Messages.Add("Password cannot be empty");
+
+    if (administratorDTO.Profile == null)
+        validation.Messages.Add("Profile cannot be empty");
+
+    if (validation.Messages.Count > 0)
+        return Results.BadRequest(validation);
+
+
+    var administrator = new Administrator
+    {
+        Email = administratorDTO.Email,
+        Password = administratorDTO.Password,
+        Profile = administratorDTO.Profile.ToString() ?? Profile.editor.ToString()
+    };
+
+    return Results.Created();
+
 }).WithTags("Administrator");
 #endregion
 
