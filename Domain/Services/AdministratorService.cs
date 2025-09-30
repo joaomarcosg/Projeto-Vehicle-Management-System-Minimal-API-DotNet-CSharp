@@ -12,6 +12,28 @@ public class AdministratorService : IAdministratorService
     {
         _context = context;
     }
+
+    public Administrator Add(Administrator administrator)
+    {
+        _context.Administrators.Add(administrator);
+        _context.SaveChanges();
+        return administrator;
+    }
+
+    public List<Administrator> ListAdministrators(int? page)
+    {
+        var query = _context.Administrators.AsQueryable();
+
+        int itemsPerPage = 10;
+
+        if (page != null)
+        {
+            query = query.Skip(((int)page - 1) * itemsPerPage).Take(itemsPerPage);
+        }
+
+        return query.ToList();
+    }
+
     public Administrator? Login(LoginDTO loginDTO)
     {
         var adm = _context.Administrators.Where(
