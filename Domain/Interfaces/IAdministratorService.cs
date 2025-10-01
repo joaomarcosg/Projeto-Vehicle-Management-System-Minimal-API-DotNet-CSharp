@@ -7,5 +7,7 @@ public interface IAdministratorService
 {
     Administrator? Login(LoginDTO loginDTO);
     Administrator Add(Administrator administrator);
+
+    Administrator SearchById(int id);
     List<Administrator> ListAdministrators(int? page);
 }
