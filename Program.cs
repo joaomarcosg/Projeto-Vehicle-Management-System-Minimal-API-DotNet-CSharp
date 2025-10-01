@@ -55,7 +55,7 @@ app.MapGet("/administrators", ([FromQuery] int? page, IAdministratorService admi
         });
     }
 
-    return Results.Ok(administratorService.ListAdministrators(page));
+    return Results.Ok(adms);
 
 }).WithTags("Administrator");
 
