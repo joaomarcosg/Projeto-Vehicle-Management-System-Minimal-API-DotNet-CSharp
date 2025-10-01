@@ -41,6 +41,23 @@ app.MapPost("/administrators/login", ([FromBody] LoginDTO loginDTO, IAdministrat
         return Results.Unauthorized();
 }).WithTags("Administrator");
 
+app.MapGet("/administrators", ([FromQuery] int? page, IAdministratorService administratorService) =>
+{
+
+    return Results.Ok(administratorService.ListAdministrators(page));
+
+}).WithTags("Administrator");
+
+app.MapGet("/administrators/{id}", ([FromRoute] int id, IAdministratorService administratorService) =>
+{
+    var administrator = administratorService.SearchById(id);
+
+    if (administrator == null) return Results.NotFound();
+
+    return Results.Ok(administrator);
+
+}).WithTags("Vehicle");
+
 app.MapPost("/administrators", ([FromBody] AdministratorDTO administratorDTO, IAdministratorService administratorService) =>
 {
     var validation = new ValidationErrors
