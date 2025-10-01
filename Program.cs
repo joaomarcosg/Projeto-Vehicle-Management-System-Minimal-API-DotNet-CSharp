@@ -43,6 +43,17 @@ app.MapPost("/administrators/login", ([FromBody] LoginDTO loginDTO, IAdministrat
 
 app.MapGet("/administrators", ([FromQuery] int? page, IAdministratorService administratorService) =>
 {
+    var adms = new List<AdministratorModelView>();
+    var administrators = administratorService.ListAdministrators(page);
+    foreach (var adm in administrators)
+    {
+        adms.Add(new AdministratorModelView
+        {
+            Id = adm.Id,
+            Email = adm.Email,
+            Profile = (Profile)Enum.Parse(typeof(Profile), adm.Profile)
+        });
+    }
 
     return Results.Ok(administratorService.ListAdministrators(page));
 
