@@ -56,7 +56,7 @@ app.MapGet("/administrators/{id}", ([FromRoute] int id, IAdministratorService ad
 
     return Results.Ok(administrator);
 
-}).WithTags("Vehicle");
+}).WithTags("Administrator");
 
 app.MapPost("/administrators", ([FromBody] AdministratorDTO administratorDTO, IAdministratorService administratorService) =>
 {
