@@ -51,7 +51,7 @@ app.MapGet("/administrators", ([FromQuery] int? page, IAdministratorService admi
         {
             Id = adm.Id,
             Email = adm.Email,
-            Profile = (Profile)Enum.Parse(typeof(Profile), adm.Profile)
+            Profile = adm.Profile
         });
     }
 
