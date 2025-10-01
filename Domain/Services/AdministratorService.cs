@@ -20,6 +20,11 @@ public class AdministratorService : IAdministratorService
         return administrator;
     }
 
+    public Administrator? SearchById(int id)
+    {
+        return _context.Administrators.Where(a => a.Id == id).FirstOrDefault();
+    }
+
     public List<Administrator> ListAdministrators(int? page)
     {
         var query = _context.Administrators.AsQueryable();
