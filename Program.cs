@@ -93,7 +93,7 @@ app.MapPost("/administrators", ([FromBody] AdministratorDTO administratorDTO, IA
     {
         Email = administratorDTO.Email,
         Password = administratorDTO.Password,
-        Profile = administratorDTO.Profile.ToString() ?? Profile.editor.ToString()
+        Profile = administratorDTO.Profile.ToString() ?? Profile.Editor.ToString()
     };
 
     return Results.Created();
