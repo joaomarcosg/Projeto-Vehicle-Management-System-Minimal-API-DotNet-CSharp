@@ -79,7 +79,7 @@ app.MapGet("/administrators", ([FromQuery] int? page, IAdministratorService admi
 
     return Results.Ok(adms);
 
-}).WithTags("Administrator");
+}).RequireAuthorization().WithTags("Administrator");
 
 app.MapGet("/administrators/{id}", ([FromRoute] int id, IAdministratorService administratorService) =>
 {
@@ -94,7 +94,7 @@ app.MapGet("/administrators/{id}", ([FromRoute] int id, IAdministratorService ad
             Profile = administrator.Profile
         });
 
-}).WithTags("Administrator");
+}).RequireAuthorization().WithTags("Administrator");
 
 app.MapPost("/administrators", ([FromBody] AdministratorDTO administratorDTO, IAdministratorService administratorService) =>
 {
@@ -132,7 +132,7 @@ app.MapPost("/administrators", ([FromBody] AdministratorDTO administratorDTO, IA
             Profile = administrator.Profile
         });
 
-}).WithTags("Administrator");
+}).RequireAuthorization().WithTags("Administrator");
 #endregion
 
 #region Vehicles
@@ -174,7 +174,7 @@ app.MapPost("/vehicle", ([FromBody] VehicleDTO vehicleDTO, IVehicleService vehic
 
     return Results.Created($"/vehicle/{vehicle.Id}", vehicle);
 
-}).WithTags("Vehicle");
+}).RequireAuthorization().WithTags("Vehicle");
 
 app.MapGet("/vehicle", ([FromQuery] int? page, IVehicleService vehicleService) =>
 {
@@ -191,7 +191,7 @@ app.MapGet("/vehicle/{id}", ([FromRoute] int id, IVehicleService vehicleService)
 
     return Results.Ok(vehicle);
 
-}).WithTags("Vehicle");
+}).RequireAuthorization().WithTags("Vehicle");
 
 app.MapPut("/vehicle/{id}", ([FromRoute] int id, VehicleDTO vehicleDTO, IVehicleService vehicleService) =>
 {
@@ -212,7 +212,7 @@ app.MapPut("/vehicle/{id}", ([FromRoute] int id, VehicleDTO vehicleDTO, IVehicle
 
     return Results.Ok(vehicle);
 
-}).WithTags("Vehicle");
+}).RequireAuthorization().WithTags("Vehicle");
 
 app.MapDelete("/vehicle/{id}", ([FromRoute] int id, IVehicleService vehicleService) =>
 {
@@ -224,7 +224,7 @@ app.MapDelete("/vehicle/{id}", ([FromRoute] int id, IVehicleService vehicleServi
 
     return Results.NoContent();
 
-}).WithTags("Vehicle");
+}).RequireAuthorization().WithTags("Vehicle");
 #endregion
 
 #region App
