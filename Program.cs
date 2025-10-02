@@ -80,7 +80,7 @@ var app = builder.Build();
 #endregion
 
 #region Home
-app.MapGet("/", () => Results.Json(new Home())).WithTags("Home");
+app.MapGet("/", () => Results.Json(new Home())).AllowAnonymous().WithTags("Home");
 #endregion
 
 #region Administrators
@@ -120,7 +120,7 @@ app.MapPost("/administrators/login", ([FromBody] LoginDTO loginDTO, IAdministrat
     }
     else
         return Results.Unauthorized();
-}).WithTags("Administrator");
+}).AllowAnonymous().WithTags("Administrator");
 
 app.MapGet("/administrators", ([FromQuery] int? page, IAdministratorService administratorService) =>
 {
