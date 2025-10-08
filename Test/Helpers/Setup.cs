@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using MinimalApi.Domain.Entities;
 using MinimalApi.Domain.Interfaces;
 using MinimalApi.Infrastructure.Db;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Test.Helpers;
 
@@ -22,8 +23,15 @@ public class Setup
             {
                 services.AddScoped<IAdministratorService, AdministratorServiceMock>();
 
+
             });
         });
+        
+        Setup.client = Setup.http.CreateClient();
+    }
+    public static void ClassCleanup()
+    {
+        Setup.http.Dispose();
     }
 
 }
