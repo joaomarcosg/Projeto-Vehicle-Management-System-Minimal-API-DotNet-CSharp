@@ -29,7 +29,7 @@ public class AdministratorRequestTest
             Password = "123456"
         };
 
-        var content = new StringContent(JsonSerializer.Serialize(loginDTO), Encoding.UTF8, "application/json");
+        var content = new StringContent(JsonSerializer.Serialize(loginDTO), Encoding.UTF8, "Application/json");
 
     }
 }
